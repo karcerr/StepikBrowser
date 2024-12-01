@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            app:startDestination="@id/splashFragment">
+    <fragment
+            android:id="@+id/splashFragment"
+            android:name="com.stepikbrowser.feature_splash.ui.SplashFragment"
+            android:label="Splash"
+    >
+        <action
+                android:id="@+id/action_splashFragment_to_onboarding_and_auth"
+                app:destination="@id/onboarding_and_authGraph" />
+        <action
+                android:id="@+id/action_splashFragment_to_mainGraph"
+                app:destination="@id/mainGraph" />
+    </fragment>
+
+    <navigation android:id="@+id/onboarding_and_authGraph" app:startDestination="@id/onboardingFragment">
+        <fragment
+                android:id="@+id/onboardingFragment"
+                android:name="com.stepikbrowser.feature_onboarding.ui.OnboardingFragment"
+                android:label="Onboarding"
+        />
+        <fragment
+                android:id="@+id/authFragment"
+                android:name="com.stepikbrowser.feature_auth.ui.AuthenticationFragment"
+                android:label="Authentication"
+        >
+            <action android:id="@+id/action_authFragment_to_mainGraph" app:destination="@id/mainGraph"/>
+        </fragment>
+    </navigation>
+    <navigation android:id="@+id/mainGraph" app:startDestination="@id/mainFragment">
+        <fragment
+                android:id="@+id/mainFragment"
+                android:name="com.stepikbrowser.feature_main.ui.MainFragment"
+                android:label="Main"
+        >
+        </fragment>
+        <fragment android:id="@+id/favoritesFragment" android:name="com.example.feature_favorites.ui.favoritesFragment"
+                  android:label="favoritesFragment"/>
+        <fragment android:id="@+id/accountFragment" android:name="com.stepikbrowser.feature_account.ui.AccountFragment"
+                  android:label="AccountFragment">
+            <action android:id="@+id/action_accountFragment_to_splashFragment" app:destination="@id/splashFragment"/>
+        </fragment>
+    </navigation>
+
+
+</navigation>
