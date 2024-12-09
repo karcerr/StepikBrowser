@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlin)
     alias(libs.plugins.kotlinKapt)
     alias(libs.plugins.googleServices)
+    alias(libs.plugins.hiltPlugin)
 }
 
 android {
@@ -38,7 +39,6 @@ android {
     configurations.all {
         exclude(group = "com.intellij", module = "annotations")
     }
-
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -52,23 +52,26 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.ktx)
 
-
     implementation(libs.bundles.hilt)
+    kapt(libs.hilt.compiler)
+
     implementation(libs.bundles.navigation)
+    implementation(libs.bundles.firebase)
 
     // Feature Modules
-    implementation(project(":feature_splash"))
-    implementation(project(":feature_onboarding"))
-    implementation(project(":feature_auth"))
-    implementation(project(":feature_main"))
-    implementation(project(":feature_favorites"))
-    implementation(project(":feature_account"))
+    implementation(project(":feature:splash"))
+    implementation(project(":feature:onboarding"))
+    implementation(project(":feature:auth"))
+    implementation(project(":feature:home"))
+    implementation(project(":feature:favorites"))
+    implementation(project(":feature:profile"))
 
-
-    // Library Modules
-    implementation(project(":core"))
-    implementation(project(":core_ui"))
-    implementation(project(":data"))
-    implementation(project(":domain"))
-    implementation(project(":network"))
+    // Layers
+    implementation(project(":data:user"))
+    implementation(project(":domain:auth"))
+}
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
 }

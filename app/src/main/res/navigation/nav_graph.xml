@@ -5,44 +5,57 @@
             app:startDestination="@id/splashFragment">
     <fragment
             android:id="@+id/splashFragment"
-            android:name="com.stepikbrowser.feature_splash.ui.SplashFragment"
+            android:name="com.stepikbrowser.feature.splash.SplashFragment"
             android:label="Splash"
     >
         <action
                 android:id="@+id/action_splashFragment_to_onboarding_and_auth"
-                app:destination="@id/onboarding_and_authGraph" />
+                app:destination="@id/onboarding_and_auth_graph"/>
         <action
-                android:id="@+id/action_splashFragment_to_mainGraph"
-                app:destination="@id/mainGraph" />
+                android:id="@+id/action_splashFragment_to_main_graph"
+                app:destination="@id/main_graph"/>
     </fragment>
 
-    <navigation android:id="@+id/onboarding_and_authGraph" app:startDestination="@id/onboardingFragment">
+    <navigation android:id="@+id/onboarding_and_auth_graph" app:startDestination="@id/onboardingFragment">
         <fragment
                 android:id="@+id/onboardingFragment"
-                android:name="com.stepikbrowser.feature_onboarding.ui.OnboardingFragment"
+                android:name="com.stepikbrowser.feature.onboarding.OnboardingFragment"
                 android:label="Onboarding"
         />
         <fragment
                 android:id="@+id/authFragment"
-                android:name="com.stepikbrowser.feature_auth.ui.AuthenticationFragment"
+                android:name="com.stepikbrowser.feature.auth.AuthenticationFragment"
                 android:label="Authentication"
         >
-            <action android:id="@+id/action_authFragment_to_mainGraph" app:destination="@id/mainGraph"/>
         </fragment>
+        <deepLink
+                app:uri="stepikbrowser://onboarding_and_auth"
+        />
+        <action android:id="@+id/action_global_splashFragment" app:destination="@id/splashFragment"/>
     </navigation>
-    <navigation android:id="@+id/mainGraph" app:startDestination="@id/mainFragment">
+    <navigation android:id="@+id/main_graph" app:startDestination="@id/homeFragment">
         <fragment
-                android:id="@+id/mainFragment"
-                android:name="com.stepikbrowser.feature_main.ui.MainFragment"
-                android:label="Main"
+                android:id="@+id/homeFragment"
+                android:name="com.stepikbrowser.feature.home.HomeFragment"
+                android:label="homeFragment"
         >
         </fragment>
-        <fragment android:id="@+id/favoritesFragment" android:name="com.example.feature_favorites.ui.favoritesFragment"
-                  android:label="favoritesFragment"/>
-        <fragment android:id="@+id/accountFragment" android:name="com.stepikbrowser.feature_account.ui.AccountFragment"
-                  android:label="AccountFragment">
-            <action android:id="@+id/action_accountFragment_to_splashFragment" app:destination="@id/splashFragment"/>
+        <fragment
+                android:id="@+id/favoritesFragment"
+                android:name="com.stepikbrowser.feature.favorites.FavoritesFragment"
+                android:label="favoritesFragment"/>
+        <fragment
+                android:id="@+id/profileFragment"
+                android:name="com.stepikbrowser.feature.profile.ProfileFragment"
+                android:label="ProfileFragment">
+            <action
+                    android:id="@+id/action_profileFragment_to_splashFragment"
+                    app:destination="@id/splashFragment"
+            />
         </fragment>
+        <deepLink
+                app:uri="stepikbrowser://main_graph"
+        />
     </navigation>
 
 

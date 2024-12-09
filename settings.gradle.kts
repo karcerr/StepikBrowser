@@ -5,6 +5,9 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
+}
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -15,15 +18,15 @@ dependencyResolutionManagement {
 
 rootProject.name = "Stepik Browser"
 include(":app")
-include(":network")
-include(":domain")
-include(":core")
-include(":core_ui")
-include(":data")
-include(":feature_onboarding")
-include(":feature_auth")
-include(":feature_main")
-include(":feature_favorites")
-include(":feature_account")
-include(":feature_splash")
-include(":feature_splash")
+
+include(":feature:splash")
+include(":feature:onboarding")
+include(":feature:auth")
+include(":feature:home")
+include(":feature:favorites")
+include(":feature:profile")
+include(":core:ui")
+include(":data:user")
+include(":core:network:firebase")
+include(":domain:auth")
+include(":domain:courses")

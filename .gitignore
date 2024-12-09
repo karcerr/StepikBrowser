@@ -13,4 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
-/network/src/main/google-services.json
+/core/network/firebase/google-services.json
+/app/google-services.json
