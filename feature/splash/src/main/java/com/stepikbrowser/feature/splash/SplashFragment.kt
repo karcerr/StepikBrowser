@@ -8,6 +8,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import android.os.Handler
+import android.os.Looper
 
 @AndroidEntryPoint
 class SplashFragment: Fragment(R.layout.fragment_splash) {
@@ -16,18 +18,18 @@ class SplashFragment: Fragment(R.layout.fragment_splash) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.isLoggedIn.observe(viewLifecycleOwner) { isLoggedIn ->
-            val deepLinkUri = if (isLoggedIn) {
-                "stepikbrowser://main_graph"
-            } else {
-                "stepikbrowser://onboarding_and_auth"
-            }
+            Handler(Looper.getMainLooper()).postDelayed({
+                val deepLinkUri = if (isLoggedIn)
+                    "stepikbrowser://main_graph"
+                else
+                    "stepikbrowser://onboarding_and_auth"
 
-            val deepLinkRequest = NavDeepLinkRequest.Builder
-                .fromUri(deepLinkUri.toUri())
-                .build()
+                val deepLinkRequest = NavDeepLinkRequest.Builder
+                    .fromUri(deepLinkUri.toUri())
+                    .build()
 
-            findNavController().navigate(deepLinkRequest)
+                findNavController().navigate(deepLinkRequest)
+            }, 2000)
         }
-
     }
 }

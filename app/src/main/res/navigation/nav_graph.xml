@@ -16,7 +16,10 @@
                 app:destination="@id/main_graph"/>
     </fragment>
 
-    <navigation android:id="@+id/onboarding_and_auth_graph" app:startDestination="@id/onboardingFragment">
+    <navigation
+            android:id="@+id/onboarding_and_auth_graph"
+            app:startDestination="@id/onboardingFragment"
+    >
         <fragment
                 android:id="@+id/onboardingFragment"
                 android:name="com.stepikbrowser.feature.onboarding.OnboardingFragment"
@@ -27,6 +30,9 @@
                 android:name="com.stepikbrowser.feature.auth.AuthenticationFragment"
                 android:label="Authentication"
         >
+            <deepLink
+                    app:uri="stepikbrowser://auth"
+            />
         </fragment>
         <deepLink
                 app:uri="stepikbrowser://onboarding_and_auth"
