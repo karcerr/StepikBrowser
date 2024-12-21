@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 
 @AndroidEntryPoint
 class SplashFragment: Fragment(R.layout.fragment_splash) {
@@ -27,8 +28,8 @@ class SplashFragment: Fragment(R.layout.fragment_splash) {
                 val deepLinkRequest = NavDeepLinkRequest.Builder
                     .fromUri(deepLinkUri.toUri())
                     .build()
-
-                findNavController().navigate(deepLinkRequest)
+                if (isAdded)
+                    findNavController().navigate(deepLinkRequest)
             }, 2000)
         }
     }

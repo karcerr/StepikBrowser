@@ -49,8 +49,6 @@ class AuthenticationFragmentViewModel @Inject constructor(
                 _errorState.postValue(e.message)
             }
         }
-
-
     }
     private fun validateLogin(email: String, password: String): String? {
         return when {

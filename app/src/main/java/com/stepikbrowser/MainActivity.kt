@@ -1,9 +1,9 @@
 package com.stepikbrowser
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -21,10 +21,15 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavigationView.setupWithNavController(navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->
+            //Clearing these because we never back down
+            navController.popBackStack(R.id.splashFragment, true)
+            navController.popBackStack(R.id.onboardingFragment, true)
+            navController.popBackStack(R.id.authFragment, true)
+            Log.d("Navigating logger", "Navigated to $destination")
             when (destination.id) {
-                R.id.mainFragment,
+                R.id.homeFragment,
                 R.id.favoritesFragment,
-                R.id.accountFragment -> {
+                R.id.profileFragment -> {
                     bottomNavigationView.visibility = View.VISIBLE
                 }
                 else -> bottomNavigationView.visibility = View.GONE

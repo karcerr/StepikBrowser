@@ -8,12 +8,6 @@
             android:name="com.stepikbrowser.feature.splash.SplashFragment"
             android:label="Splash"
     >
-        <action
-                android:id="@+id/action_splashFragment_to_onboarding_and_auth"
-                app:destination="@id/onboarding_and_auth_graph"/>
-        <action
-                android:id="@+id/action_splashFragment_to_main_graph"
-                app:destination="@id/main_graph"/>
     </fragment>
 
     <navigation
@@ -37,7 +31,6 @@
         <deepLink
                 app:uri="stepikbrowser://onboarding_and_auth"
         />
-        <action android:id="@+id/action_global_splashFragment" app:destination="@id/splashFragment"/>
     </navigation>
     <navigation android:id="@+id/main_graph" app:startDestination="@id/homeFragment">
         <fragment
@@ -54,10 +47,7 @@
                 android:id="@+id/profileFragment"
                 android:name="com.stepikbrowser.feature.profile.ProfileFragment"
                 android:label="ProfileFragment">
-            <action
-                    android:id="@+id/action_profileFragment_to_splashFragment"
-                    app:destination="@id/splashFragment"
-            />
+
         </fragment>
         <deepLink
                 app:uri="stepikbrowser://main_graph"

@@ -7,10 +7,9 @@
     <string name="dont_have_an_account">Dont have an account yet? Register</string>
     <string name="register">Register</string>
     <string name="log_in">Log In</string>
-    <string name="register_title">Register</string>
+    <string name="register_title">Registration</string>
     <string name="log_in_title">Log In</string>
-    <string name="enter_email" translatable="false">E-Mail</string>
     <string name="enter_password">Password</string>
-    <string name="repeat_password">Repeat Password</string>
+    <string name="repeat_password">Repeat password</string>
     <string name="unknown_auth_error">Authentication error :(</string>
 </resources>

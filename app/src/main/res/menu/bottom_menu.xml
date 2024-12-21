@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-            android:id="@+id/mainFragment"
+            android:id="@+id/homeFragment"
             android:title="Главное"
             android:icon="@drawable/home"
             android:layout_width="wrap_content"
@@ -16,8 +16,8 @@
             android:layout_height="wrap_content"
     />
     <item
-            android:id="@+id/accountFragment"
-            android:title="Аккаунт"
+            android:id="@+id/profileFragment"
+            android:title="Профиль"
             android:icon="@drawable/account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

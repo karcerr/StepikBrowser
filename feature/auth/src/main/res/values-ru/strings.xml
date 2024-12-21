@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="empty_email_error">Введите email</string>
+    <string name="empty_password_error">Введите пароль</string>
+    <string name="passwords_dont_match_error">Пароли не совпадают</string>
+    <string name="already_have_an_account">Уже есть аккаунт? Войти</string>
+    <string name="dont_have_an_account">Ещё нет аккаунта? Зарегистрироваться</string>
+    <string name="register">Зарегестрироваться</string>
+    <string name="log_in">Войти</string>
+    <string name="register_title">Регистрация</string>
+    <string name="log_in_title">Вход</string>
+    <string name="enter_password">Пароль</string>
+    <string name="repeat_password">Повторите пароль</string>
+    <string name="unknown_auth_error">Ошибка авторизации</string>
+</resources>
