@@ -8,6 +8,8 @@ import com.stepikbrowser.domain.auth.AuthRepository
 import com.stepikbrowser.domain.auth.AuthUseCase
 import com.stepikbrowser.domain.auth.AuthenticatedUseCase
 import com.stepikbrowser.domain.auth.CheckUserLoginStatusUseCase
+import com.stepikbrowser.domain.courses.CourseRepository
+import com.stepikbrowser.domain.courses.CourseUseCase
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -30,4 +32,11 @@ class UseCaseModule {
     ): AuthenticatedUseCase {
         return AuthenticatedUseCase(authRepository)
     }
+    @Provides
+    fun provideCourseUseCase(
+        courseRepository: CourseRepository
+    ): CourseUseCase {
+        return CourseUseCase(courseRepository)
+    }
+
 }

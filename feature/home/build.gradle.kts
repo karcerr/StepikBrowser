@@ -1,7 +1,8 @@
-@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlin)
+    alias(libs.plugins.kotlinKapt)
+    alias(libs.plugins.hiltPlugin)
 }
 
 android {
@@ -45,6 +46,13 @@ dependencies {
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.appcompat)
 
+    implementation(project(":domain:courses"))
+
     implementation(libs.bundles.hilt)
+    kapt(libs.hilt.compiler)
+
+    implementation(libs.bundles.navigation)
+    implementation(libs.bundles.firebase)
     implementation(project(":core:ui"))
+    implementation(libs.androidx.constraintlayout)
 }

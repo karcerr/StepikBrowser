@@ -57,6 +57,7 @@ dependencies {
 
     implementation(libs.bundles.navigation)
     implementation(libs.bundles.firebase)
+    implementation(libs.bundles.retrofit)
 
     // Feature Modules
     implementation(project(":feature:splash"))
@@ -68,7 +69,9 @@ dependencies {
 
     // Layers
     implementation(project(":data:user"))
+    implementation(project(":data:courses"))
     implementation(project(":domain:auth"))
+    implementation(project(":domain:courses"))
 }
 java {
     toolchain {

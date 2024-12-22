@@ -51,5 +51,4 @@ dependencies {
 
     implementation(project(":domain:auth"))
     implementation(project(":domain:courses"))
-    implementation(project(":core:network:firebase"))
 }

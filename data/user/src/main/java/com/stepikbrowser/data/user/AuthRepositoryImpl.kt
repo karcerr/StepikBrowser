@@ -4,7 +4,6 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.stepikbrowser.domain.auth.AuthRepository
-import com.stepikbrowser.domain.auth.User
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 

@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.stepikbrowser.core.network.firebase"
+    namespace = "com.stepikbrowser.data.courses"
     compileSdk = 34
 
     defaultConfig {
@@ -44,8 +44,10 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.appcompat)
 
-    implementation(libs.bundles.firebase)
-
     implementation(libs.bundles.hilt)
     kapt(libs.hilt.compiler)
+
+    implementation(libs.bundles.firebase)
+    implementation(libs.bundles.retrofit)
+    implementation(project(":domain:courses"))
 }
