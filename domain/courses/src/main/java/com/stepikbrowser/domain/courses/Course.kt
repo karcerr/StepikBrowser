@@ -1,13 +1,15 @@
 package com.stepikbrowser.domain.courses
 
-import com.google.type.Date
+import java.util.Date
+import com.google.gson.annotations.SerializedName
 
 data class Course(
     val id: Int,                // "id"
-    var title: String,          // Stepik API provides "title" (ru) or "title_en"
-    var coverUrl: String,       // "cover"
+    var title: String,          // "title" (ru)
+    @SerializedName("cover") var coverUrl: String,
+    var summary: String?,       // "summary"
     var description: String?,   // "description"
-    var createDate: Date?,      // "create_date"
-    var updateDate: Date?,      // "update_date"
+    @SerializedName("create_date") var createDate: Date?,
+    @SerializedName("update_date") var updateDate: Date?,
     var rating: Float?,         // "review_summary", average
 )

@@ -45,4 +45,5 @@ dependencies {
     kapt(libs.hilt.compiler)
 
     implementation(libs.bundles.firebase)
+    implementation(libs.bundles.retrofit)
 }

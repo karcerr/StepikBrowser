@@ -1,8 +1,10 @@
 package com.stepikbrowser.data.courses
 
+import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.stepikbrowser.domain.courses.Course
 import com.stepikbrowser.domain.courses.CourseRepository
+import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class CourseRepositoryImpl @Inject constructor(
@@ -14,6 +16,7 @@ class CourseRepositoryImpl @Inject constructor(
             page = page?: 1,
             order = order?: ""
         )
+        Log.d("Courses Logger", response.courses.toString())
         return response.courses
     }
 

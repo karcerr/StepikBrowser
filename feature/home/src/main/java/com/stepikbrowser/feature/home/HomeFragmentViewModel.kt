@@ -24,9 +24,7 @@ class HomeFragmentViewModel @Inject constructor(
 
     fun loadCourses(page: Int, orderBy: String? = null) {
         viewModelScope.launch(Dispatchers.IO) {
-            Log.d("Courses Logger", "requesting courses")
             val result = courseUseCase.getCourses(page, orderBy)
-            Log.d("Courses Logger", result.toString())
         }
     }
 }

@@ -15,5 +15,7 @@ class HomeFragment: Fragment(R.layout.home_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.loadCourses(curPage)
+        viewModel.loadCourses(2)
+        viewModel.loadCourses(3)
     }
 }
