@@ -46,7 +46,7 @@ dependencies {
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.appcompat)
 
-    implementation(project(":domain:courses"))
+    implementation(project(":domain:stepik"))
 
     implementation(libs.bundles.hilt)
     kapt(libs.hilt.compiler)

@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.stepikbrowser.domain.courses"
+    namespace = "com.stepikbrowser.domain.stepik"
     compileSdk = 34
 
     defaultConfig {

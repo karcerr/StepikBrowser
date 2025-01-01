@@ -69,9 +69,9 @@ dependencies {
 
     // Layers
     implementation(project(":data:user"))
-    implementation(project(":data:courses"))
+    implementation(project(":data:stepik"))
     implementation(project(":domain:auth"))
-    implementation(project(":domain:courses"))
+    implementation(project(":domain:stepik"))
 }
 java {
     toolchain {

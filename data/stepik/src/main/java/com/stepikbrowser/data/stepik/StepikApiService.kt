@@ -1,18 +1,16 @@
-package com.stepikbrowser.data.courses
+package com.stepikbrowser.data.stepik
 
 import com.google.gson.annotations.SerializedName
-import com.stepikbrowser.domain.courses.Course
+import com.stepikbrowser.domain.stepik.Course
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface StepikApiService {
     @GET("courses")
     suspend fun getCourses(
-        @Query("page") page: Int,
+        @Query("page") page: Int?,
         @Query("order") order: String
     ): StepikResponse
-
-
 }
 data class StepikResponse(
     val courses: List<Course>,

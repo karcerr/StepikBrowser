@@ -1,6 +1,8 @@
-package com.stepikbrowser.domain.courses
+package com.stepikbrowser.domain.stepik
 
-interface CourseRepository {
+interface StepikRepository {
+    suspend fun authUser(): String
+    fun saveAccessToken(token: String)
     suspend fun getCourses(page: Int?, order: String?): List<Course>?
     suspend fun getCourseDetails(courseId: Int): Course?
     suspend fun favoriteCourse(courseId: Int): Boolean?

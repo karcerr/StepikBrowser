@@ -14,8 +14,9 @@ class HomeFragment: Fragment(R.layout.home_fragment) {
     private val curPage = 1
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.authStepik()
         viewModel.loadCourses(curPage)
         viewModel.loadCourses(2)
-        viewModel.loadCourses(3)
+       // viewModel.loadCourses(3)
     }
 }

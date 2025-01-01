@@ -1,4 +1,4 @@
-package com.stepikbrowser.domain.courses
+package com.stepikbrowser.domain.stepik
 
 import java.util.Date
 import com.google.gson.annotations.SerializedName

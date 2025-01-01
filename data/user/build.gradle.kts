@@ -50,5 +50,5 @@ dependencies {
     implementation(libs.bundles.firebase)
 
     implementation(project(":domain:auth"))
-    implementation(project(":domain:courses"))
+    implementation(project(":domain:stepik"))
 }

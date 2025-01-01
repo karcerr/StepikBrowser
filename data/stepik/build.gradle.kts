@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.stepikbrowser.data.courses"
+    namespace = "com.stepikbrowser.data.stepik"
     compileSdk = 34
 
     defaultConfig {
@@ -45,9 +45,10 @@ dependencies {
     implementation(libs.appcompat)
 
     implementation(libs.bundles.hilt)
+    implementation(libs.androidx.security.crypto.ktx)
     kapt(libs.hilt.compiler)
 
     implementation(libs.bundles.firebase)
     implementation(libs.bundles.retrofit)
-    implementation(project(":domain:courses"))
+    implementation(project(":domain:stepik"))
 }

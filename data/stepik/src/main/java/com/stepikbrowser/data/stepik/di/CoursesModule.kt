@@ -1,7 +1,7 @@
-package com.stepikbrowser.data.courses.di
+package com.stepikbrowser.data.stepik.di
 
-import com.stepikbrowser.data.courses.CourseRepositoryImpl
-import com.stepikbrowser.domain.courses.CourseRepository
+import com.stepikbrowser.data.stepik.StepikRepositoryImpl
+import com.stepikbrowser.domain.stepik.StepikRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -12,6 +12,6 @@ import dagger.hilt.components.SingletonComponent
 abstract class CoursesModule {
     @Binds
     abstract fun bindCoursesRepository(
-        courseRepositoryImpl: CourseRepositoryImpl
-    ): CourseRepository
+        stepikRepositoryImpl: StepikRepositoryImpl
+    ): StepikRepository
 }
