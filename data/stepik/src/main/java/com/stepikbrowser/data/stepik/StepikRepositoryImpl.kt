@@ -1,5 +1,6 @@
 package com.stepikbrowser.data.stepik
 
+import android.content.Context
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.stepikbrowser.data.stepik.util.TokenManager
@@ -7,17 +8,31 @@ import com.stepikbrowser.domain.stepik.StepikRepository
 import com.stepikbrowser.domain.stepik.Course
 import javax.inject.Inject
 import kotlinx.coroutines.tasks.await
+import java.io.FileInputStream
+import java.io.IOException
+import java.io.InputStreamReader
+import java.util.*
 
 class StepikRepositoryImpl @Inject constructor(
     private val firebaseAuth: FirebaseAuth,
     private val apiService: StepikApiService,
     private val authService: StepikAuthService,
-    private val tokenManager: TokenManager
+    private val tokenManager: TokenManager,
+    context: Context
 ): StepikRepository {
+    private val properties = Properties()
+    init {
+        try {
+            val inputStream = context.assets.open("secrets.properties")
+            properties.load(InputStreamReader(inputStream))
+        } catch (e: IOException) {
+            Log.e("Stepik Auth", "Failed to load configuration", e)
+        }
+    }
     override suspend fun authUser(): String {
         val response = authService.getAccessToken(
-            clientId = "uFkdnH5QoHJt6vvnEEEe09bi7fLkHcfCCtK8PoXd",
-            clientSecret = "AseqxRQdIfEP6GLZH598mbmrGKLPT3xZZZKEM0ZDAaThWMPRorJjoF2isLtWEa9jnWdD5uVEw1tge1fq9K0OYnLsLIv9g1AA6o16GPGHlHzEx9e6YCu9KHnr7GtWGGXR"
+            clientId =  properties.getProperty("CLIENT_ID"),
+            clientSecret = properties.getProperty("CLIENT_SECRET")
         )
         Log.d("Stepik Auth Logger", response.toString())
         return response.accessToken
@@ -32,7 +47,6 @@ class StepikRepositoryImpl @Inject constructor(
             page = page,
             order = order?: "create_date"
         )
-        Log.d("Courses Logger", response.courses.toString())
         return response.courses
     }
 

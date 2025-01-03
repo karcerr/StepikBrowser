@@ -12,4 +12,5 @@ data class Course(
     @SerializedName("create_date") var createDate: Date?,
     @SerializedName("update_date") var updateDate: Date?,
     var rating: Float?,         // "review_summary", average
+    var price: Float?          // "price"
 )

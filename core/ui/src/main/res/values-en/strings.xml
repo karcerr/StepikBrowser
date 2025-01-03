@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="learn_more">Learn More ➡</string>
+    <string name="free">Free</string>
     <string name="continue_button">Continue</string>
     <string name="empty_email_error">Enter email</string>
     <string name="empty_password_error">Enter password</string>

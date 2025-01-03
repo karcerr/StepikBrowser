@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="continue_button">Continue</string>
     <string name="empty_email_error">Enter email</string>
     <string name="empty_password_error">Enter password</string>
     <string name="passwords_dont_match_error">Passwords dont match</string>

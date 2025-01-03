@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlin)
+    alias(libs.plugins.kotlinKapt)
+    alias(libs.plugins.hiltPlugin)
 }
 
 android {
@@ -8,7 +10,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        minSdk = 23
+        minSdk = 26
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -27,6 +29,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    viewBinding {
+        enable = true
+    }
 }
 
 dependencies {
@@ -36,4 +41,7 @@ dependencies {
     implementation(libs.bundles.glide)
     implementation(libs.androidx.constraintlayout)
 
+    implementation(libs.bundles.hilt)
+    kapt(libs.hilt.compiler)
+    implementation(project(":domain:stepik"))
 }
