@@ -1,4 +1,4 @@
-package com.stepikbrowser.util
+package com.stepikbrowser.core.util
 
 import android.annotation.SuppressLint
 import java.text.SimpleDateFormat

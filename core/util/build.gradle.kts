@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.stepikbrowser.core.ui"
+    namespace = "com.stepikbrowser.core.util"
     compileSdk = 34
 
     defaultConfig {
@@ -26,23 +26,25 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    configurations.all {
+        exclude(group = "com.intellij", module = "annotations")
+    }
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "META-INF/gradle/incremental.annotation.processors"
+        }
+    }
     kotlinOptions {
         jvmTarget = "1.8"
-    }
-    viewBinding {
-        enable = true
     }
 }
 
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.appcompat)
-    implementation(libs.material)
-    implementation(libs.bundles.glide)
-    implementation(libs.androidx.constraintlayout)
-
     implementation(libs.bundles.hilt)
     kapt(libs.hilt.compiler)
-    implementation(project(":domain:stepik"))
-    implementation(project(":core:util"))
+
+    implementation(libs.bundles.retrofit)
 }

@@ -20,4 +20,6 @@
     <string name="enter_password">Password</string>
     <string name="repeat_password">Repeat Password</string>
     <string name="unknown_auth_error">Authentication error :(</string>
+    <string name="date_placeholder" translatable="false">01.01.1970</string>
+    <string name="rating_placeholder" translatable="false">5.0</string>
 </resources>

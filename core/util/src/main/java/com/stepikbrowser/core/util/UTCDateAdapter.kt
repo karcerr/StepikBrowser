@@ -1,4 +1,4 @@
-package com.stepikbrowser.util
+package com.stepikbrowser.core.util
 
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer

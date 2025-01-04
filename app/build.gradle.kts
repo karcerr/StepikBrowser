@@ -70,11 +70,12 @@ dependencies {
     implementation(project(":feature:favorites"))
     implementation(project(":feature:profile"))
 
-    // Layers
     implementation(project(":data:user"))
     implementation(project(":data:stepik"))
     implementation(project(":domain:auth"))
     implementation(project(":domain:stepik"))
+
+    implementation(project(":core:util"))
 }
 java {
     toolchain {

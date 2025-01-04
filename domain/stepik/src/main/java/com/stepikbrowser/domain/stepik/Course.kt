@@ -9,8 +9,8 @@ data class Course(
     @SerializedName("cover") var coverUrl: String,
     var summary: String?,       // "summary"
     var description: String?,   // "description"
-    @SerializedName("create_date") var createDate: Date?,
+    @SerializedName("create_date") var createDate: Date,
     @SerializedName("update_date") var updateDate: Date?,
     var rating: Float?,         // "review_summary", average
-    var price: Float?          // "price"
+    var price: Float?           // "price"
 )

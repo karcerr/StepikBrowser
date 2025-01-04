@@ -8,7 +8,7 @@ import com.google.gson.GsonBuilder
 import com.stepikbrowser.data.stepik.di.ApiRetrofit
 import com.stepikbrowser.data.stepik.di.AuthRetrofit
 import com.stepikbrowser.data.stepik.util.AccessTokenInterceptor
-import com.stepikbrowser.util.UTCDateAdapter
+import com.stepikbrowser.core.util.UTCDateAdapter
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
