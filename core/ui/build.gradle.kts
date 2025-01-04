@@ -40,6 +40,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.bundles.glide)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.blurview)
 
     implementation(libs.bundles.hilt)
     kapt(libs.hilt.compiler)

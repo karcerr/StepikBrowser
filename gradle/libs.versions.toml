@@ -1,6 +1,7 @@
 [versions]
 android-gradle-plugin = "8.5.2"
 annotations = "23.0.0"
+blurview = "version-2.0.5"
 core-ktx = "1.13.1"
 lifecycle-runtime-ktx = "2.8.7"
 kotlin = "2.0.21"
@@ -25,6 +26,7 @@ security-crypto-ktx = "1.1.0-alpha06"
 junit = "4.13.2"
 junit-version = "1.2.1"
 espresso-core = "3.6.1"
+dimezis = "2.0.5"
 
 [libraries]
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
@@ -35,6 +37,7 @@ androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx",
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+blurview = { module = "com.github.Dimezis:BlurView", version.ref = "blurview" }
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
@@ -53,6 +56,7 @@ appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "a
 androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragment-ktx" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 androidx-security-crypto-ktx = { group = "androidx.security", name = "security-crypto-ktx", version.ref = "security-crypto-ktx" }
+dimezis-blurview = { module = "com.github.Dimezis:BlurView", version.ref = "dimezis" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junit-version" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
