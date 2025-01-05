@@ -1,13 +1,9 @@
 package com.stepikbrowser.core.ui
 
-import android.graphics.RenderEffect
-import android.graphics.Shader
-import android.os.Build
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.view.ViewOutlineProvider
-import androidx.annotation.RequiresApi
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.stepikbrowser.core.ui.databinding.ItemCourseBinding
@@ -18,9 +14,10 @@ import java.util.*
 
 
 class CourseAdapter(
-    private val items: List<Course>,
     private val onItemClicked: (Course) -> Unit
 ): RecyclerView.Adapter<CourseAdapter.CourseViewHolder>() {
+    private val items = mutableListOf<Course>()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CourseViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemCourseBinding.inflate(inflater, parent, false)
@@ -31,6 +28,25 @@ class CourseAdapter(
 
     override fun onBindViewHolder(holder: CourseViewHolder, position: Int) {
         holder.bind(items[position])
+    }
+
+    fun submitList(courseList: List<Course>) {
+        val diffCallback = object : DiffUtil.Callback() {
+            override fun getOldListSize() = items.size
+            override fun getNewListSize() = courseList.size
+            override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+                return items[oldItemPosition].id == courseList[newItemPosition].id
+            }
+
+            override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+                return items[oldItemPosition] == courseList[newItemPosition]
+            }
+        }
+
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+        items.clear()
+        items.addAll(courseList)
+        diffResult.dispatchUpdatesTo(this)
     }
 
     class CourseViewHolder(

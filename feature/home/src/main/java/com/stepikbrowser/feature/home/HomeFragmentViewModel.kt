@@ -24,18 +24,33 @@ class HomeFragmentViewModel @Inject constructor(
     private val _courseList = MutableLiveData<List<Course>>()
     val courseList: LiveData<List<Course>> get() = _courseList
 
+    private var curPage = 1
+    private var stepikAuthenticated = false
+    var curOrder: String? = null
+
     fun authStepik() {
+        if (stepikAuthenticated) return
         viewModelScope.launch(Dispatchers.IO) {
             val result = stepikAuthUseCase.authApi()
             stepikAuthUseCase.saveAccessToken(result)
+            stepikAuthenticated = true
         }
     }
     fun loadCourses(page: Int? = null, orderBy: String? = null) {
+        page.let { curPage = it?: 1 }
+        curOrder = orderBy
         viewModelScope.launch(Dispatchers.IO) {
             val result = courseUseCase.getCourses(page, orderBy)
             Log.d("Courses List Logger", result?.size.toString() + result?.map{it.id}.toString())
             _courseList.postValue(result)
         }
     }
-
+    fun loadNextCoursePage() {
+        viewModelScope.launch(Dispatchers.IO) {
+            curPage++
+            val result = courseUseCase.getCourses(curPage, curOrder)
+            Log.d("Courses List Logger", result?.size.toString() + result?.map{it.id}.toString())
+            _courseList.postValue(_courseList.value.orEmpty() + (result?: emptyList()))
+        }
+    }
 }
