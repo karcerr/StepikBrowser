@@ -8,6 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFF</color>
     <color name="dark_gray">#24252A</color>
+    <color name="lighter_gray">#C2C2C2</color>
     <color name="light_gray">#32333A</color>
     <color name="light_gray_glass">#32333A4D</color>
     <color name="dark">#151515</color>

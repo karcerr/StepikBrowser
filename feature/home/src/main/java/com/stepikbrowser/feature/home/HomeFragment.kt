@@ -25,17 +25,31 @@ class HomeFragment: Fragment(R.layout.home_fragment) {
         binding = HomeFragmentBinding.bind(view)
 
 
-        viewModel.authStepik()
+        showShimmer()
         setupRecyclerView()
+        setupObservers()
+        viewModel.authStepik()
+        viewModel.loadCourses(curPage)
+    }
+    private fun setupObservers() {
         viewModel.courseList.observe(viewLifecycleOwner, { courses ->
             adapter = CourseAdapter(courses) { course ->
                 Toast.makeText(requireContext(), "Clicked: ${course.title}", Toast.LENGTH_SHORT).show()
             }
+            hideShimmer()
             binding.coursesRecyclerView.adapter = adapter
         })
-        viewModel.loadCourses(curPage)
     }
     private fun setupRecyclerView() {
         binding.coursesRecyclerView.layoutManager = LinearLayoutManager(context)
     }
+    private fun showShimmer() {
+        binding.shimmerLayout.startShimmer()
+        binding.shimmerLayout.visibility = View.VISIBLE
+    }
+    private fun hideShimmer() {
+        binding.shimmerLayout.stopShimmer()
+        binding.shimmerLayout.visibility = View.GONE
+    }
+
 }

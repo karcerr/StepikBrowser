@@ -48,6 +48,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.appcompat)
+    implementation(libs.shimmer)
 
     implementation(project(":domain:stepik"))
 
