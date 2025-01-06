@@ -11,7 +11,10 @@ class CourseUseCase @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    suspend fun favoriteCourse(courseId: Int): Boolean? {
-        TODO("Not yet implemented")
+    suspend fun bookmarkCourse(course: Course) {
+        if (course.bookmarked == true)
+            return
+        else //null or false (not bookmarked)
+            return
     }
 }

@@ -53,4 +53,9 @@ class HomeFragmentViewModel @Inject constructor(
             _courseList.postValue(_courseList.value.orEmpty() + (result?: emptyList()))
         }
     }
+    fun bookmarkCourse(course: Course) {
+        viewModelScope.launch(Dispatchers.IO) {
+            courseUseCase.bookmarkCourse(course)
+        }
+    }
 }

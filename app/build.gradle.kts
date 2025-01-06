@@ -67,7 +67,7 @@ dependencies {
     implementation(project(":feature:onboarding"))
     implementation(project(":feature:auth"))
     implementation(project(":feature:home"))
-    implementation(project(":feature:favorites"))
+    implementation(project(":feature:bookmarks"))
     implementation(project(":feature:profile"))
 
     implementation(project(":data:user"))

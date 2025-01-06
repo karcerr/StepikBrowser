@@ -27,9 +27,9 @@ class MainActivity : AppCompatActivity() {
                 return@setOnItemSelectedListener false
             }
             val navOptions = when (item.itemId) {
-                R.id.homeFragment -> createNavOptions(currentDestination, R.id.homeFragment)
-                R.id.favoritesFragment -> createNavOptions(currentDestination, R.id.favoritesFragment)
-                R.id.profileFragment -> createNavOptions(currentDestination, R.id.profileFragment)
+                R.id.bHomeFragment -> createNavOptions(currentDestination, R.id.bHomeFragment)
+                R.id.aBookmarksFragment -> createNavOptions(currentDestination, R.id.aBookmarksFragment)
+                R.id.cProfileFragment -> createNavOptions(currentDestination, R.id.cProfileFragment)
                 else -> null
             }
 
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
                 false
             }
         }
-        bottomNavigationView.menu.findItem(R.id.homeFragment).setChecked(true)
+        bottomNavigationView.menu.findItem(R.id.bHomeFragment).setChecked(true)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             //Clearing these because we never back down
@@ -49,9 +49,9 @@ class MainActivity : AppCompatActivity() {
             navController.popBackStack(R.id.authFragment, true)
             Log.d("Navigating logger", "Navigated to $destination")
             when (destination.id) {
-                R.id.homeFragment,
-                R.id.favoritesFragment,
-                R.id.profileFragment -> {
+                R.id.bHomeFragment,
+                R.id.aBookmarksFragment,
+                R.id.cProfileFragment -> {
                     bottomNavigationView.visibility = View.VISIBLE
                 }
                 else -> bottomNavigationView.visibility = View.GONE

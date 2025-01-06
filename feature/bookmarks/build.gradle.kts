@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.stepikbrowser.feature.favorites"
+    namespace = "com.stepikbrowser.feature.bookmarks"
     compileSdk = 34
 
     defaultConfig {

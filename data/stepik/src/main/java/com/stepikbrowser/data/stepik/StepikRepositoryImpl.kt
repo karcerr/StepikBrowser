@@ -54,7 +54,7 @@ class StepikRepositoryImpl @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    override suspend fun favoriteCourse(courseId: Int): Boolean? {
+    override suspend fun bookmarkCourse(courseId: Int): Boolean? {
         TODO("Not yet implemented")
     }
 }

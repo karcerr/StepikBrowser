@@ -32,22 +32,23 @@
                 app:uri="stepikbrowser://onboarding_and_auth"
         />
     </navigation>
-    <navigation android:id="@+id/main_graph" app:startDestination="@id/homeFragment">
+    <navigation android:id="@+id/main_graph" app:startDestination="@id/bHomeFragment">
         <fragment
-                android:id="@+id/homeFragment"
+                android:id="@+id/aBookmarksFragment"
+                android:name="com.stepikbrowser.feature.bookmarks.BookmarksFragment"
+                android:label="bookmarksFragment"
+        />
+        <fragment
+                android:id="@+id/bHomeFragment"
                 android:name="com.stepikbrowser.feature.home.HomeFragment"
                 android:label="homeFragment"
         >
         </fragment>
         <fragment
-                android:id="@+id/favoritesFragment"
-                android:name="com.stepikbrowser.feature.favorites.FavoritesFragment"
-                android:label="favoritesFragment"/>
-        <fragment
-                android:id="@+id/profileFragment"
+                android:id="@+id/cProfileFragment"
                 android:name="com.stepikbrowser.feature.profile.ProfileFragment"
-                android:label="ProfileFragment">
-
+                android:label="profileFragment"
+        >
         </fragment>
         <deepLink
                 app:uri="stepikbrowser://main_graph"

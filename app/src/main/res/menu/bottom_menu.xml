@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-            android:id="@+id/favoritesFragment"
-            android:title="Избранное"
+            android:id="@+id/aBookmarksFragment"
+            android:title="@string/bookmarks"
             android:icon="@drawable/bookmark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
     />
     <item
-            android:id="@+id/homeFragment"
-            android:title="Главное"
+            android:id="@+id/bHomeFragment"
+            android:title="@string/home"
             android:icon="@drawable/home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
     />
     <item
-            android:id="@+id/profileFragment"
-            android:title="Профиль"
+            android:id="@+id/cProfileFragment"
+            android:title="@string/profile"
             android:icon="@drawable/account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

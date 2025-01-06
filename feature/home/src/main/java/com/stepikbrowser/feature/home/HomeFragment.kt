@@ -1,16 +1,12 @@
 package com.stepikbrowser.feature.home
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.stepikbrowser.core.ui.CourseAdapter
-import com.stepikbrowser.domain.stepik.Course
 import com.stepikbrowser.feature.home.databinding.HomeFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -40,9 +36,11 @@ class HomeFragment: Fragment(R.layout.home_fragment) {
     }
     private fun setupRecyclerView() {
         binding.coursesRecyclerView.layoutManager = LinearLayoutManager(context)
-        adapter = CourseAdapter { course ->
+        adapter = CourseAdapter ({ course ->
             Toast.makeText(requireContext(), "Clicked: ${course.title}", Toast.LENGTH_SHORT).show()
-        }
+        }, { course ->
+            viewModel.bookmarkCourse(course)
+        })
         binding.coursesRecyclerView.adapter = adapter
     }
     private fun setupLoadMoreButton() {
@@ -53,14 +51,14 @@ class HomeFragment: Fragment(R.layout.home_fragment) {
         }
     }
     private fun showShimmer() {
-        binding.shimmerLayout.startShimmer()
         binding.loadMoreButton.visibility = View.GONE
+        binding.shimmerLayout.startShimmer()
         binding.shimmerLayout.visibility = View.VISIBLE
     }
     private fun hideShimmer() {
+        binding.shimmerLayout.visibility = View.GONE
         binding.shimmerLayout.stopShimmer()
         binding.loadMoreButton.visibility = View.VISIBLE
-        binding.shimmerLayout.visibility = View.GONE
     }
 
 }

@@ -84,7 +84,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/bookmark"
-                    android:background="@null"
+                    android:background="@drawable/round_corners"
                     android:padding="10dp"
             />
         </eightbitlab.com.blurview.BlurView>
