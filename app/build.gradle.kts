@@ -72,6 +72,7 @@ dependencies {
 
     implementation(project(":data:user"))
     implementation(project(":data:stepik"))
+    implementation(project(":data:local"))
     implementation(project(":domain:auth"))
     implementation(project(":domain:stepik"))
 

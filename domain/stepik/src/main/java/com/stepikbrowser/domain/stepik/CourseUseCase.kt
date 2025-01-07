@@ -12,9 +12,6 @@ class CourseUseCase @Inject constructor(
     }
 
     suspend fun bookmarkCourse(course: Course) {
-        if (course.bookmarked == true)
-            return
-        else //null or false (not bookmarked)
-            return
+        stepikRepository.bookmarkCourse(course, course.bookmarked?: false)
     }
 }

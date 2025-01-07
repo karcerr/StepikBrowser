@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.stepikbrowser.core.ui"
+    namespace = "com.stepikbrowser.data.local"
     compileSdk = 34
 
     defaultConfig {
@@ -38,21 +38,15 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    viewBinding {
-        enable = true
-    }
 }
 
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.appcompat)
-    implementation(libs.material)
-    implementation(libs.bundles.glide)
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.blurview)
 
     implementation(libs.bundles.hilt)
     kapt(libs.hilt.compiler)
+
+    implementation(libs.bundles.room)
     implementation(project(":domain:stepik"))
-    implementation(project(":core:util"))
 }
