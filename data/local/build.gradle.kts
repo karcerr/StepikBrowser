@@ -1,8 +1,8 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlin)
-    alias(libs.plugins.kotlinKapt)
     alias(libs.plugins.hiltPlugin)
+    alias(libs.plugins.kspPlugin)
 }
 
 android {
@@ -22,15 +22,7 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-    configurations.all {
-        exclude(group = "com.intellij", module = "annotations")
-    }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-            excludes += "META-INF/gradle/incremental.annotation.processors"
-        }
-    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -38,6 +30,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
 }
 
 dependencies {
@@ -45,8 +38,11 @@ dependencies {
     implementation(libs.appcompat)
 
     implementation(libs.bundles.hilt)
-    kapt(libs.hilt.compiler)
-
-    implementation(libs.bundles.room)
+    implementation(libs.androidx.lifecycle.livedata)
+    ksp(libs.hilt.compiler)
+    implementation(libs.bundles.retrofit)
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
     implementation(project(":domain:stepik"))
 }

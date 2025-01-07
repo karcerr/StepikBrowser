@@ -6,7 +6,7 @@ core-ktx = "1.13.1"
 lifecycle-runtime-ktx = "2.8.7"
 kotlin = "2.0.21"
 kotlin-kapt = "2.0.21"
-coroutines = "1.7.3"
+kotlin-ksp = "2.0.21-1.0.28"
 room = "2.6.1"
 hilt = "2.48.1"
 retrofit = "2.9.0"
@@ -26,8 +26,8 @@ security-crypto-ktx = "1.1.0-alpha06"
 junit = "4.13.2"
 junit-version = "1.2.1"
 espresso-core = "3.6.1"
-dimezis = "2.0.5"
 shimmer = "0.5.0"
+lifecycle-livedata = "2.0.0"
 
 [libraries]
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
@@ -40,8 +40,6 @@ androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 blurview = { module = "com.github.Dimezis:BlurView", version.ref = "blurview" }
 shimmer = { module = "com.facebook.shimmer:shimmer", version.ref = "shimmer" }
-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
@@ -61,6 +59,7 @@ androidx-security-crypto-ktx = { group = "androidx.security", name = "security-c
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junit-version" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
+androidx-lifecycle-livedata = { group = "androidx.lifecycle", name = "lifecycle-livedata", version.ref = "lifecycle-livedata" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "android-gradle-plugin" }
@@ -68,6 +67,7 @@ googleServices = { id = "com.google.gms.google-services", version.ref = "google-
 jetbrainsKotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinKapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin-kapt" }
 hiltPlugin = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+kspPlugin = { id = "com.google.devtools.ksp", version.ref = "kotlin-ksp" }
 safeArgs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigation" }
 androidLibrary = { id = "com.android.library", version.ref = "android-gradle-plugin" }
 
@@ -80,10 +80,6 @@ room = [
     "androidx-room-runtime",
     "androidx-room-ktx",
     "androidx-room-compiler"
-]
-coroutines = [
-    "coroutines-core",
-    "coroutines-android"
 ]
 hilt = [
     "hilt-android",

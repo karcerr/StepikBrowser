@@ -3,6 +3,8 @@ package com.stepikbrowser.data.stepik
 import android.content.Context
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
+import com.stepikbrowser.data.local.CourseDao
+import com.stepikbrowser.data.local.LocalDataSourceImpl
 import com.stepikbrowser.data.stepik.util.TokenManager
 import com.stepikbrowser.domain.stepik.StepikRepository
 import com.stepikbrowser.domain.stepik.Course
@@ -18,6 +20,7 @@ class StepikRepositoryImpl @Inject constructor(
     private val apiService: StepikApiService,
     private val authService: StepikAuthService,
     private val tokenManager: TokenManager,
+    private val localDataSource: LocalDataSourceImpl,
     context: Context
 ): StepikRepository {
     private val properties = Properties()
@@ -54,7 +57,10 @@ class StepikRepositoryImpl @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    override suspend fun bookmarkCourse(course: Course, isBookmarked: Boolean): Boolean? {
-        TODO("Not yet implemented")
+    override suspend fun bookmarkCourse(course: Course, isBookmarked: Boolean) {
+        if (isBookmarked)
+            localDataSource.deleteCourse(course)
+        else
+            localDataSource.upsertCourse(course)
     }
 }

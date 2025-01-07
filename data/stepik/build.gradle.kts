@@ -47,8 +47,10 @@ dependencies {
     implementation(libs.bundles.hilt)
     implementation(libs.androidx.security.crypto.ktx)
     kapt(libs.hilt.compiler)
-
+    implementation(libs.bundles.room)
+    kapt(libs.androidx.room.compiler)
     implementation(libs.bundles.firebase)
     implementation(libs.bundles.retrofit)
     implementation(project(":domain:stepik"))
+    implementation(project(":data:local"))
 }
