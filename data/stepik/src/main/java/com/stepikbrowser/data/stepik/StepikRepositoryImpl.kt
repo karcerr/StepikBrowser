@@ -2,21 +2,17 @@ package com.stepikbrowser.data.stepik
 
 import android.content.Context
 import android.util.Log
-import com.google.firebase.auth.FirebaseAuth
-import com.stepikbrowser.data.local.CourseDao
+import androidx.lifecycle.LiveData
 import com.stepikbrowser.data.local.LocalDataSourceImpl
 import com.stepikbrowser.data.stepik.util.TokenManager
 import com.stepikbrowser.domain.stepik.StepikRepository
 import com.stepikbrowser.domain.stepik.Course
 import javax.inject.Inject
-import kotlinx.coroutines.tasks.await
-import java.io.FileInputStream
 import java.io.IOException
 import java.io.InputStreamReader
 import java.util.*
 
 class StepikRepositoryImpl @Inject constructor(
-    private val firebaseAuth: FirebaseAuth,
     private val apiService: StepikApiService,
     private val authService: StepikAuthService,
     private val tokenManager: TokenManager,
@@ -57,10 +53,23 @@ class StepikRepositoryImpl @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    override suspend fun bookmarkCourse(course: Course, isBookmarked: Boolean) {
-        if (isBookmarked)
+    override suspend fun bookmarkCourse(course: Course, isBookmarked: Boolean?) {
+        if (isBookmarked == true)
             localDataSource.deleteCourse(course)
         else
             localDataSource.upsertCourse(course)
+    }
+
+    override fun getBookmarkedCourses(orderBy: String): LiveData<List<Course>> {
+        return when (orderBy) {
+            "title" -> localDataSource.getBookmarkedCoursesOrderedByTitle()
+            "rating" -> localDataSource.getBookmarkedCoursesOrderedByRating()
+            "create_date" -> localDataSource.getBookmarkedCoursesOrderedByCreateDate()
+            else -> throw IllegalArgumentException("Unsupported orderBy parameter: $orderBy")
+        }
+    }
+
+    override fun getBookmarkedCoursesIds(): LiveData<List<Int>> {
+        return localDataSource.getBookmarkedCoursesIds()
     }
 }

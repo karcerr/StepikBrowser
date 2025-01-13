@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+>
+    <LinearLayout
+            android:id="@+id/horizontal_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="horizontal"
+            android:layout_margin="15dp"
+    >
+        <EditText
+                android:id="@+id/search_edit_text"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                style="@style/TitleMedium"
+                android:hint="@string/search_courses"
+                android:layout_marginEnd="15dp"
+                android:textFontWeight="500"
+                android:background="@drawable/round_corners"
+                android:backgroundTint="@color/light_gray"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="16dp"
+        />
+
+        <ImageButton
+                android:id="@+id/filter_button"
+                android:src="@drawable/filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:background="@drawable/round_corners"
+                android:backgroundTint="@color/light_gray"
+        />
+
+    </LinearLayout>
+    <TextView
+            android:id="@+id/sort_text_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/horizontal_layout"
+            style="@style/TitleMedium"
+            android:gravity="end"
+            android:text="По дате добавления..."
+            android:textColor="@color/green"
+            android:layout_marginTop="15dp"
+            android:layout_marginHorizontal="16dp"
+            android:textFontWeight="600"
+    />
+
+    <androidx.core.widget.NestedScrollView
+            android:id="@+id/courses_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/sort_text_button"
+            android:paddingBottom="100dp"
+            android:layout_marginTop="15dp"
+    >
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+        >
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/courses_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+            />
+            <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:shimmer_duration="800"
+            >
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible"
+                >
+                    <include layout="@layout/item_course_shimmer"/>
+                    <include layout="@layout/item_course_shimmer"/>
+                    <include layout="@layout/item_course_shimmer"/>
+                </LinearLayout>
+            </com.facebook.shimmer.ShimmerFrameLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

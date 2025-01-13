@@ -2,10 +2,7 @@ package com.stepikbrowser.feature.home
 
 import android.util.Log
 import android.content.Context
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.stepikbrowser.domain.stepik.Course
 import com.stepikbrowser.domain.stepik.CourseUseCase
 import com.stepikbrowser.domain.stepik.StepikAuthUseCase
@@ -13,6 +10,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.lang.Thread.sleep
 import javax.inject.Inject
 
 @HiltViewModel
@@ -23,6 +21,14 @@ class HomeFragmentViewModel @Inject constructor(
 ) : ViewModel() {
     private val _courseList = MutableLiveData<List<Course>>()
     val courseList: LiveData<List<Course>> get() = _courseList
+
+    private val bookmarkedCourseIds = MutableLiveData<List<Int>>()
+    init {
+        courseUseCase.getBookmarkedCoursesIds().observeForever { ids ->
+            Log.d("Bookmarks Logger", ids.toString())
+            bookmarkedCourseIds.postValue(ids)
+        }
+    }
 
     private var curPage = 1
     private var stepikAuthenticated = false
@@ -39,23 +45,45 @@ class HomeFragmentViewModel @Inject constructor(
     fun loadCourses(page: Int? = null, orderBy: String? = null) {
         page.let { curPage = it?: 1 }
         curOrder = orderBy
-        viewModelScope.launch(Dispatchers.IO) {
-            val result = courseUseCase.getCourses(page, orderBy)
-            Log.d("Courses List Logger", result?.size.toString() + result?.map{it.id}.toString())
-            _courseList.postValue(result)
+
+        bookmarkedCourseIds.observeForever { bookmarkedIds ->
+            viewModelScope.launch(Dispatchers.IO) {
+                val result = if (_courseList.value.isNullOrEmpty())
+                    courseUseCase.getCourses(curPage, orderBy)?.map { course ->
+                        course.copy(bookmarked = bookmarkedIds.contains(course.id))
+                    }
+                else
+                    _courseList.value?.map {
+                        course -> course.copy(bookmarked = bookmarkedIds.contains(course.id))
+                    }
+
+                Log.d("Courses Bookmarks Logger", bookmarkedIds.toString())
+                Log.d("Courses List Logger", result?.size.toString() + " " + result?.map { it.id }.toString())
+                _courseList.postValue(result)
+            }
         }
     }
     fun loadNextCoursePage() {
         viewModelScope.launch(Dispatchers.IO) {
             curPage++
-            val result = courseUseCase.getCourses(curPage, curOrder)
+            val bookmarkedIds = bookmarkedCourseIds.value.orEmpty()
+            val result = courseUseCase.getCourses(curPage, curOrder)?.map { course ->
+                course.copy(bookmarked = bookmarkedIds.contains(course.id))
+            }
             Log.d("Courses List Logger", result?.size.toString() + result?.map{it.id}.toString())
+            Log.d("Courses Bookmarks Logger", bookmarkedIds.toString())
             _courseList.postValue(_courseList.value.orEmpty() + (result?: emptyList()))
         }
     }
-    fun bookmarkCourse(course: Course) {
+    fun bookmarkCourse(course: Course, isBookmarked: Boolean?) {
         viewModelScope.launch(Dispatchers.IO) {
-            courseUseCase.bookmarkCourse(course)
+            courseUseCase.bookmarkCourse(course, isBookmarked)
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        bookmarkedCourseIds.removeObserver { }
+        courseUseCase.getBookmarkedCoursesIds().removeObserver { }
     }
 }

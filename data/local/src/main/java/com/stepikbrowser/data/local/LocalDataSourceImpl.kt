@@ -33,7 +33,9 @@ class LocalDataSourceImpl @Inject constructor(
             entities.map { it.toDomain() }
         }
     }
-
+    fun getBookmarkedCoursesIds(): LiveData<List<Int>> {
+        return courseDao.getBookmarkedCoursesIds()
+    }
 }
 
 fun <X, Y> LiveData<X>.map(transform: (X) -> Y): LiveData<Y> {

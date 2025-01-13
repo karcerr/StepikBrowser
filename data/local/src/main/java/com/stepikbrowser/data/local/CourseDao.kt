@@ -19,4 +19,7 @@ interface CourseDao {
 
     @Query("SELECT * FROM courses ORDER BY rating DESC")
     fun getBookmarkedCoursesOrderedByRating(): LiveData<List<CourseEntity>>
+
+    @Query("SELECT id FROM courses")
+    fun getBookmarkedCoursesIds(): LiveData<List<Int>>
 }

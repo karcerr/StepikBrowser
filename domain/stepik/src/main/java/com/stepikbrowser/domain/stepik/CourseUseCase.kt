@@ -1,5 +1,7 @@
 package com.stepikbrowser.domain.stepik
 
+import android.util.Log
+import androidx.lifecycle.LiveData
 import javax.inject.Inject
 
 class CourseUseCase @Inject constructor(
@@ -11,7 +13,13 @@ class CourseUseCase @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    suspend fun bookmarkCourse(course: Course) {
-        stepikRepository.bookmarkCourse(course, course.bookmarked?: false)
+    suspend fun bookmarkCourse(course: Course, isBookmarked: Boolean?) {
+        stepikRepository.bookmarkCourse(course, isBookmarked)
+    }
+    fun getBookmarkedCourses(orderBy: String): LiveData<List<Course>> {
+        return stepikRepository.getBookmarkedCourses(orderBy)
+    }
+    fun getBookmarkedCoursesIds(): LiveData<List<Int>> {
+        return stepikRepository.getBookmarkedCoursesIds()
     }
 }

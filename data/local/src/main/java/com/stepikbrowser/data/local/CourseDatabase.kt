@@ -17,7 +17,6 @@ abstract class CourseDatabase: RoomDatabase() {
 }
 
 class DateTypeConverter {
-
     @TypeConverter
     fun fromTimestamp(value: Long?): Date? {
         return value?.let { Date(it) }

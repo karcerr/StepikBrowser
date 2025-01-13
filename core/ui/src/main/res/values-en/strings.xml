@@ -15,4 +15,6 @@
     <string name="enter_password">Password</string>
     <string name="repeat_password">Repeat password</string>
     <string name="unknown_auth_error">Authentication error :(</string>
+    <string name="search_courses">Search courses...</string>
+    <string name="load_more">Load More</string>
 </resources>

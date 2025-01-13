@@ -41,6 +41,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.livedata)
     ksp(libs.hilt.compiler)
     implementation(libs.bundles.retrofit)
+
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)

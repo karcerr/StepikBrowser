@@ -78,8 +78,8 @@ class CourseAdapter(
             updateBookmarkButtonTint(course)
 
             binding.bookmarkButton.setOnClickListener {
-                course.bookmarked = !(course.bookmarked?: false)
                 onBookmarkButtonClicked(course)
+                course.bookmarked = !(course.bookmarked?: false)
                 updateBookmarkButtonTint(course)
             }
 
