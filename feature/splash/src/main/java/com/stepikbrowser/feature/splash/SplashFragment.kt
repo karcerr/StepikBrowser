@@ -26,7 +26,6 @@ class SplashFragment: Fragment(R.layout.fragment_splash) {
                     "stepikbrowser://main_graph"
                 else
                     "stepikbrowser://onboarding_and_auth"
-
                 val deepLinkRequest = NavDeepLinkRequest.Builder
                     .fromUri(deepLinkUri.toUri())
                     .build()
