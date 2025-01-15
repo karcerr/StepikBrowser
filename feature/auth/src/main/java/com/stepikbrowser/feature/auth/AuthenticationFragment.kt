@@ -39,11 +39,11 @@ class AuthenticationFragment: Fragment(R.layout.auth) {
             viewModel.authenticate(email, password, repeatPassword, isRegisterMode)
         }
 
-        viewModel.errorState.observe(viewLifecycleOwner, { error ->
+        viewModel.errorState.observe(viewLifecycleOwner) { error ->
             error?.let { showErrorMessage(it) }
-        })
+        }
 
-        viewModel.authStatus.observe(viewLifecycleOwner, { state ->
+        viewModel.authStatus.observe(viewLifecycleOwner) { state ->
             Log.d("AuthLogger", state.toString())
             if (!state) {
                 showErrorMessage(requireContext().getString(R.string.unknown_auth_error))
@@ -53,9 +53,9 @@ class AuthenticationFragment: Fragment(R.layout.auth) {
             val deepLinkRequest = NavDeepLinkRequest.Builder
                 .fromUri("stepikbrowser://main_graph".toUri())
                 .build()
-            if (isAdded)
-                findNavController().navigate(deepLinkRequest)
-        })
+            findNavController().popBackStack()
+            findNavController().navigate(deepLinkRequest)
+        }
     }
 
     private fun showErrorMessage(error: String) {
@@ -69,7 +69,7 @@ class AuthenticationFragment: Fragment(R.layout.auth) {
                 getString(R.string.already_have_an_account)
             else getString(R.string.dont_have_an_account)
         // There could be many locales, but they all have '?' in common, the clickable part of the text is always after it
-        val questionMarkIndex = fullText.indexOf('?')
+        val questionMarkIndex = fullText.indexOf('?') + 1
         val spannableString = SpannableString(fullText)
         val clickableSpan = object : ClickableSpan() {
             override fun onClick(widget: View) {

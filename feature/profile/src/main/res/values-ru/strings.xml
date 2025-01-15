@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="profile">Профиль</string>
+    <string name="contact_support">Написать в поддержку</string>
+    <string name="settings">Настройки</string>
+    <string name="log_out">Выйти из аккаунта</string>
 </resources>

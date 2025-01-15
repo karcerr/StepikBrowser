@@ -19,6 +19,8 @@ class SplashFragment: Fragment(R.layout.fragment_splash) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.isLoggedIn.observe(viewLifecycleOwner) { isLoggedIn ->
+            if (isLoggedIn == null)
+                return@observe
             Handler(Looper.getMainLooper()).postDelayed({
                 val deepLinkUri = if (isLoggedIn)
                     "stepikbrowser://main_graph"
@@ -28,8 +30,9 @@ class SplashFragment: Fragment(R.layout.fragment_splash) {
                 val deepLinkRequest = NavDeepLinkRequest.Builder
                     .fromUri(deepLinkUri.toUri())
                     .build()
-                if (isAdded)
-                    findNavController().navigate(deepLinkRequest)
+                findNavController().popBackStack()
+                findNavController().navigate(deepLinkRequest)
+                viewModel.isLoggedIn.removeObservers(viewLifecycleOwner)
             }, 2000)
         }
     }

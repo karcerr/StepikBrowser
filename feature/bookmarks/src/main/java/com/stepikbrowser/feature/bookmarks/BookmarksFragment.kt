@@ -26,10 +26,10 @@ class BookmarksFragment: Fragment(R.layout.bookmarks_fragment) {
     }
 
     private fun setupObservers() {
-        viewModel.bookmarkedCourses.observe(viewLifecycleOwner, { courses ->
+        viewModel.bookmarkedCourses.observe(viewLifecycleOwner) { courses ->
             adapter.submitList(courses)
             hideShimmer()
-        })
+        }
     }
     private fun setupRecyclerView() {
         binding.coursesRecyclerView.layoutManager = LinearLayoutManager(context)

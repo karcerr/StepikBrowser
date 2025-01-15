@@ -20,8 +20,8 @@ class OnboardingFragment: Fragment(R.layout.onboarding) {
             val deepLinkRequest = NavDeepLinkRequest.Builder
                 .fromUri("stepikbrowser://auth".toUri())
                 .build()
-            if (isAdded)
-                findNavController().navigate(deepLinkRequest)
+            findNavController().popBackStack()
+            findNavController().navigate(deepLinkRequest)
         }
     }
 }

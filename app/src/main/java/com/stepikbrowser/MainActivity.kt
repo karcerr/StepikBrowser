@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import com.stepikbrowser.databinding.MainActivityBinding
@@ -12,6 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: MainActivityBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = MainActivityBinding.inflate(layoutInflater)
@@ -20,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         val bottomNavigationView = binding.bottomNavView
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
+
 
         bottomNavigationView.setOnItemSelectedListener { item ->
             val currentDestination = navController.currentDestination?.id
@@ -43,18 +46,17 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.menu.findItem(R.id.bHomeFragment).setChecked(true)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            //Clearing these because we never back down
-            navController.popBackStack(R.id.splashFragment, true)
-            navController.popBackStack(R.id.onboardingFragment, true)
-            navController.popBackStack(R.id.authFragment, true)
             Log.d("Navigating logger", "Navigated to $destination")
             when (destination.id) {
                 R.id.bHomeFragment,
                 R.id.aBookmarksFragment,
                 R.id.cProfileFragment -> {
                     bottomNavigationView.visibility = View.VISIBLE
+                    bottomNavigationView.menu.findItem(destination.id).setChecked(true)
                 }
-                else -> bottomNavigationView.visibility = View.GONE
+                else -> {
+                    bottomNavigationView.visibility = View.GONE
+                }
             }
         }
     }

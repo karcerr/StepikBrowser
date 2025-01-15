@@ -16,8 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeFragmentViewModel @Inject constructor(
     private val courseUseCase: CourseUseCase,
-    private val stepikAuthUseCase: StepikAuthUseCase,
-    @ApplicationContext private val context: Context
+    private val stepikAuthUseCase: StepikAuthUseCase
 ) : ViewModel() {
     private val _courseList = MutableLiveData<List<Course>>()
     val courseList: LiveData<List<Course>> get() = _courseList
@@ -25,7 +24,6 @@ class HomeFragmentViewModel @Inject constructor(
     private val bookmarkedCourseIds = MutableLiveData<List<Int>>()
     init {
         courseUseCase.getBookmarkedCoursesIds().observeForever { ids ->
-            Log.d("Bookmarks Logger", ids.toString())
             bookmarkedCourseIds.postValue(ids)
         }
     }
@@ -57,7 +55,6 @@ class HomeFragmentViewModel @Inject constructor(
                         course -> course.copy(bookmarked = bookmarkedIds.contains(course.id))
                     }
 
-                Log.d("Courses Bookmarks Logger", bookmarkedIds.toString())
                 Log.d("Courses List Logger", result?.size.toString() + " " + result?.map { it.id }.toString())
                 _courseList.postValue(result)
             }
@@ -71,7 +68,6 @@ class HomeFragmentViewModel @Inject constructor(
                 course.copy(bookmarked = bookmarkedIds.contains(course.id))
             }
             Log.d("Courses List Logger", result?.size.toString() + result?.map{it.id}.toString())
-            Log.d("Courses Bookmarks Logger", bookmarkedIds.toString())
             _courseList.postValue(_courseList.value.orEmpty() + (result?: emptyList()))
         }
     }

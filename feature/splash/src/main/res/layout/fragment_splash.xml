@@ -9,8 +9,9 @@
 
     <TextView
             android:text="Splash Screen Placeholder"
-            android:textColor="#000"
+            android:textColor="#F60202"
             android:textSize="12pt"
+            android:textFontWeight="900"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"

@@ -1,5 +1,6 @@
 package com.stepikbrowser.feature.splash
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,14 +12,15 @@ import javax.inject.Inject
 class SplashFragmentViewModel @Inject constructor(
     private val checkUserLoginStatusUseCase: CheckUserLoginStatusUseCase
 ) : ViewModel() {
-    private val _isLoggedIn = MutableLiveData<Boolean>()
-    val isLoggedIn: LiveData<Boolean> get() = _isLoggedIn
+    private val _isLoggedIn = MutableLiveData<Boolean?>(null)
+    val isLoggedIn: LiveData<Boolean?> get() = _isLoggedIn
 
     init {
         checkLoginStatus()
     }
 
     private fun checkLoginStatus() {
-        _isLoggedIn.postValue(checkUserLoginStatusUseCase.invoke())
+        val result =  checkUserLoginStatusUseCase.invoke()
+        _isLoggedIn.postValue(result)
     }
 }
