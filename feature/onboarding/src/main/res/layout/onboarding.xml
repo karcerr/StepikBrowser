@@ -6,33 +6,47 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 >
-
     <TextView
-            android:text="Onboarding Screen Placeholder"
-            android:textColor="#000"
-            android:textSize="12pt"
-            android:layout_width="wrap_content"
+            android:id="@+id/onboarding_title"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:id="@+id/textView"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginBottom="50dp"
+            style="@style/TitleMedium"
+            android:textFontWeight="900"
+            android:text="@string/thousands_of_stepik_courses"
+            android:textSize="35sp"
+            android:gravity="center"
+            app:layout_constraintBottom_toTopOf="@id/flexbox_layout"
     />
+    <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/flexbox_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:flexWrap="wrap"
+            app:alignItems="center"
+            android:layout_marginStart="-40dp"
+            android:layout_marginEnd="-40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+    >
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+
     <Button
+            android:id="@+id/continue_button"
             android:text="@string/continue_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="40dp"
-            android:id="@+id/continue_button"
             style="@style/TitleMedium"
             android:textFontWeight="600"
             android:paddingHorizontal="30dp"
             android:paddingVertical="10dp"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="50dp"
             android:backgroundTint="@color/green"
             android:background="@drawable/round_corners"
+            app:layout_constraintTop_toBottomOf="@id/flexbox_layout"
     />
 </androidx.constraintlayout.widget.ConstraintLayout>

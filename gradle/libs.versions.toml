@@ -2,6 +2,7 @@
 android-gradle-plugin = "8.5.2"
 annotations = "23.0.0"
 blurview = "version-2.0.5"
+flexbox = "3.0.0"
 core-ktx = "1.13.1"
 lifecycle-runtime-ktx = "2.8.7"
 kotlin = "2.0.21"
@@ -27,8 +28,7 @@ junit = "4.13.2"
 junit-version = "1.2.1"
 espresso-core = "3.6.1"
 shimmer = "0.5.0"
-lifecycle-livedata = "2.0.0"
-lifecycle-livedata-version = "2.6.2"
+lifecycle-livedata = "2.8.7"
 
 [libraries]
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
@@ -40,6 +40,7 @@ androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 blurview = { module = "com.github.Dimezis:BlurView", version.ref = "blurview" }
+flexbox = { module = "com.google.android.flexbox:flexbox", version.ref = "flexbox" }
 shimmer = { module = "com.facebook.shimmer:shimmer", version.ref = "shimmer" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
@@ -61,7 +62,6 @@ junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junit-version" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
 androidx-lifecycle-livedata = { group = "androidx.lifecycle", name = "lifecycle-livedata", version.ref = "lifecycle-livedata" }
-lifecycle-livedata = { group = "androidx.lifecycle", name = "lifecycle-livedata", version.ref = "lifecycle-livedata-version" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "android-gradle-plugin" }

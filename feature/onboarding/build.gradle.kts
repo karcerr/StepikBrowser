@@ -47,6 +47,8 @@ dependencies {
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.appcompat)
 
+    implementation(libs.blurview)
+    implementation(libs.flexbox)
     implementation(libs.bundles.navigation)
     implementation(project(":core:ui"))
     implementation(libs.androidx.constraintlayout)
