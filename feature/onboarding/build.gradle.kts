@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlin)
+    alias(libs.plugins.hiltPlugin)
+    alias(libs.plugins.kotlinKapt)
 }
 
 android {
@@ -47,6 +49,9 @@ dependencies {
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.appcompat)
 
+    implementation(libs.bundles.hilt)
+    kapt(libs.hilt.compiler)
+    
     implementation(libs.blurview)
     implementation(libs.flexbox)
     implementation(libs.bundles.navigation)
