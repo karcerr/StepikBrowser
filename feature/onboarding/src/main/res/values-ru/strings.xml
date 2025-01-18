@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="thousands_of_stepik_courses">Тысячи курсов в одном месте</string>
-    <string name="chip_webdesign">Веб-дизайн</string>
+    <string name="chip_web_design">Веб-дизайн</string>
     <string name="chip_parsing">Парсинг</string>
     <string name="chip_python_dev">Python-разработка</string>
     <string name="chip_google_analytics">Google Аналитика</string>
+    <string name="chip_Software_Testing">Тестирование ПО</string>
+    <string name="chip_Job_Interviews">Собеседования</string>
+    <string name="chip_GameDev">Разработка игр</string>
+    <string name="chip_Microcontrollers">Микроконтроллеры</string>
 </resources>

@@ -5,7 +5,6 @@ import android.animation.ObjectAnimator
 import android.content.Context
 import android.graphics.Typeface
 import android.os.Bundle
-import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewOutlineProvider
@@ -83,8 +82,9 @@ class OnboardingFragment: Fragment(R.layout.onboarding) {
             binding.flexboxLayout.addView(blurView)
 
             blurView.setOnClickListener {
-                val rotationAngle = if (chip.isClicked) 0f else 30f
-                val translationY = if (chip.isClicked) 0f else 50f
+                val isGoingUp = chipList.indexOf(chip) >= chipList.size / 2
+                val rotationAngle = if (chip.isClicked) 0f else if (isGoingUp) -30f else 30f
+                val translationY = if (chip.isClicked) 0f else if (isGoingUp) -50f else 50f
                 val overlayColor = if (chip.isClicked) lightgrayColor else ContextCompat.getColor(requireContext(), com.stepikbrowser.core.ui.R.color.green)
                 blurView.setOverlayColor(overlayColor)
 

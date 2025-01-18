@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="thousands_of_stepik_courses">Thousands of Stepik courses in one place</string>
-    <string name="chip_webdesign">Web-design</string>
+    <string name="chip_web_design">Web-design</string>
     <string name="chip_parsing">Parsing</string>
     <string name="chip_python_dev">Python-development</string>
     <string name="chip_google_analytics">Google Analytics</string>
+    <string name="chip_Software_Testing">Software Testing</string>
+    <string name="chip_Job_Interviews">Job Interviews</string>
+    <string name="chip_GameDev">GameDev</string>
+    <string name="chip_Microcontrollers">Microcontrollers</string>
 </resources>
