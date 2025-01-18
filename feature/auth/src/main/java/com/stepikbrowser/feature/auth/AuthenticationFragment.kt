@@ -89,6 +89,7 @@ class AuthenticationFragment: Fragment(R.layout.auth) {
     private fun changeRegisterMode() {
         isRegisterMode = !isRegisterMode
         binding.repeatPasswordEditText.visibility = if (isRegisterMode) View.VISIBLE else View.GONE
+        binding.errorTextView.visibility = View.GONE
         binding.authButton.text = if (isRegisterMode) getString(R.string.register) else getString(R.string.log_in)
         binding.authTitle.text = if (isRegisterMode) getString(R.string.register_title) else getString(R.string.log_in_title)
         setClickableText()
