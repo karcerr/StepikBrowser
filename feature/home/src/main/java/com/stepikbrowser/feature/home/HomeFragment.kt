@@ -3,7 +3,9 @@ package com.stepikbrowser.feature.home
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.PopupMenu
 import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +19,8 @@ class HomeFragment: Fragment(R.layout.home_fragment) {
     private lateinit var adapter: CourseAdapter
     private lateinit var binding: HomeFragmentBinding
 
+    private var sortAscending = true
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = HomeFragmentBinding.bind(view)
@@ -24,15 +28,48 @@ class HomeFragment: Fragment(R.layout.home_fragment) {
         showShimmer()
         setupRecyclerView()
         setupObservers()
+        setupSortPopupMenu()
         viewModel.authStepik()
         if (viewModel.courseList.value.isNullOrEmpty())
             viewModel.loadCourses()
         setupLoadMoreButton()
     }
+
+    private fun setupSortPopupMenu() {
+        val popupMenu = PopupMenu(requireContext(), binding.sortTextButton)
+        popupMenu.menuInflater.inflate(R.menu.sort_menu, popupMenu.menu)
+        popupMenu.setOnMenuItemClickListener { menuItem ->
+            val newOrder =
+            when (menuItem.itemId) {
+                R.id.sort_by_creation_date -> "create_date"
+                R.id.sort_by_update_date -> "update_date"
+                R.id.sort_by_title -> "title"
+                R.id.sort_by_rating -> "creation_date"
+                else -> {"title"}
+            }
+            viewModel.changeCourseOrder(newOrder, sortAscending)
+            true
+        }
+        binding.sortTextButton.setOnClickListener {
+            popupMenu.show()
+        }
+        binding.sortOrderButton.setOnClickListener {
+            sortAscending = !sortAscending
+            binding.sortOrderButton.background = if (sortAscending)
+                AppCompatResources.getDrawable(requireContext() ,R.drawable.sort_asc)
+            else
+                AppCompatResources.getDrawable(requireContext() ,R.drawable.sort_desc)
+            viewModel.changeCourseOrder(viewModel.orderBy, sortAscending)
+        }
+    }
+
     private fun setupObservers() {
         viewModel.courseList.observe(viewLifecycleOwner, { courses ->
             adapter.submitList(courses)
-            hideShimmer()
+            if (courses.isNotEmpty())
+                hideShimmer()
+            else
+                showShimmer()
         })
     }
     private fun setupRecyclerView() {

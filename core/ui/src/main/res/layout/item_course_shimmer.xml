@@ -33,7 +33,9 @@
                 app:blurOverlayColor="@color/light_gray_glass"
                 android:layout_alignBottom="@id/cover_image"
                 android:background="@drawable/round_corners"
-                android:layout_margin="8dp"
+                android:layout_marginVertical="8dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="8dp"
         >
             <TextView
                     android:id="@+id/rating"
@@ -41,7 +43,6 @@
                     android:layout_height="32dp"
                     android:paddingVertical="5dp"
                     android:paddingHorizontal="9dp"
-
                     android:background="@color/light_gray"
             />
         </eightbitlab.com.blurview.BlurView>
@@ -58,7 +59,7 @@
         >
             <TextView
                     android:id="@+id/creation_date"
-                    android:layout_width="102dp"
+                    android:layout_width="122dp"
                     android:layout_height="32dp"
                     android:background="@color/light_gray"
             />

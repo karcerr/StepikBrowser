@@ -18,6 +18,9 @@ class HomeFragmentViewModel @Inject constructor(
     private val courseUseCase: CourseUseCase,
     private val stepikAuthUseCase: StepikAuthUseCase
 ) : ViewModel() {
+    var orderBy = "create_date"
+    private var orderByAscending = true
+
     private val _courseList = MutableLiveData<List<Course>>()
     val courseList: LiveData<List<Course>> get() = _courseList
 
@@ -30,7 +33,6 @@ class HomeFragmentViewModel @Inject constructor(
 
     private var curPage = 1
     private var stepikAuthenticated = false
-    var curOrder: String? = null
 
     fun authStepik() {
         if (stepikAuthenticated) return
@@ -40,14 +42,13 @@ class HomeFragmentViewModel @Inject constructor(
             stepikAuthenticated = true
         }
     }
-    fun loadCourses(page: Int? = null, orderBy: String? = null) {
+    fun loadCourses(page: Int? = null) {
         page.let { curPage = it?: 1 }
-        curOrder = orderBy
 
         bookmarkedCourseIds.observeForever { bookmarkedIds ->
             viewModelScope.launch(Dispatchers.IO) {
                 val result = if (_courseList.value.isNullOrEmpty())
-                    courseUseCase.getCourses(curPage, orderBy)?.map { course ->
+                    courseUseCase.getCourses(curPage, getCurCourseOrder())?.map { course ->
                         course.copy(bookmarked = bookmarkedIds.contains(course.id))
                     }
                 else
@@ -60,11 +61,19 @@ class HomeFragmentViewModel @Inject constructor(
             }
         }
     }
+    fun changeCourseOrder(newOrderBy: String, ascending: Boolean) {
+        if (orderBy == newOrderBy && orderByAscending == ascending) return
+        curPage = 1
+        orderBy = newOrderBy
+        orderByAscending = ascending
+        _courseList.postValue(emptyList())
+        loadCourses()
+    }
     fun loadNextCoursePage() {
         viewModelScope.launch(Dispatchers.IO) {
             curPage++
             val bookmarkedIds = bookmarkedCourseIds.value.orEmpty()
-            val result = courseUseCase.getCourses(curPage, curOrder)?.map { course ->
+            val result = courseUseCase.getCourses(curPage, getCurCourseOrder())?.map { course ->
                 course.copy(bookmarked = bookmarkedIds.contains(course.id))
             }
             Log.d("Courses List Logger", result?.size.toString() + result?.map{it.id}.toString())
@@ -82,4 +91,5 @@ class HomeFragmentViewModel @Inject constructor(
         bookmarkedCourseIds.removeObserver { }
         courseUseCase.getBookmarkedCoursesIds().removeObserver { }
     }
+    private fun getCurCourseOrder() = if (orderByAscending) orderBy else "-$orderBy"
 }

@@ -42,16 +42,34 @@
     </LinearLayout>
     <TextView
             android:id="@+id/sort_text_button"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/horizontal_layout"
             style="@style/TitleMedium"
             android:gravity="end"
-            android:text="По дате добавления..."
+            android:text="@string/sort_by_creation_date"
             android:textColor="@color/green"
             android:layout_marginTop="15dp"
-            android:layout_marginHorizontal="16dp"
+            android:padding="10dp"
             android:textFontWeight="600"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintEnd_toStartOf="@id/sort_order_button"
+    />
+    <ImageButton
+            android:id="@+id/sort_order_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/horizontal_layout"
+            style="@style/TitleMedium"
+            android:gravity="end"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/sort_asc"
+            android:layout_marginHorizontal="16dp"
+            android:padding="21dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintEnd_toEndOf="parent"
     />
 
     <androidx.core.widget.NestedScrollView
@@ -59,7 +77,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/sort_text_button"
-            android:paddingBottom="100dp"
+            android:paddingBottom="120dp"
             android:layout_marginTop="15dp"
     >
         <LinearLayout

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sort_by_rating">Sort by Rating</string>
+    <string name="sort_by_title">Sort by Title</string>
+    <string name="sort_by_update_date">Sort by Update Date</string>
+    <string name="sort_by_creation_date">Sort by Creation Date</string>
+</resources>
