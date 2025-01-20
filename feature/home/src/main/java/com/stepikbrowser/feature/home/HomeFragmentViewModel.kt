@@ -21,7 +21,9 @@ class HomeFragmentViewModel @Inject constructor(
     var orderBy = "create_date"
     private var orderByAscending = true
 
+    private var searchQuery = ""
     private val _courseList = MutableLiveData<List<Course>>()
+    private val fullCourseList: MutableList<Course> = mutableListOf()
     val courseList: LiveData<List<Course>> get() = _courseList
 
     private val bookmarkedCourseIds = MutableLiveData<List<Int>>()
@@ -34,6 +36,22 @@ class HomeFragmentViewModel @Inject constructor(
     private var curPage = 1
     private var stepikAuthenticated = false
 
+    fun updateSearchQuery(query: String) {
+        searchQuery = query
+        filterCourses()
+    }
+
+    private fun filterCourses() {
+        val filteredCourses = if (searchQuery.isBlank()) {
+            fullCourseList
+        } else {
+            fullCourseList.filter { course ->
+                course.title.contains(searchQuery, ignoreCase = true) ||
+                        course.description?.contains(searchQuery, ignoreCase = true) == true
+            }
+        }
+        _courseList.postValue(filteredCourses) //Not calling updateCourseList(), because it would reset fullCourseList
+    }
     fun authStepik() {
         if (stepikAuthenticated) return
         viewModelScope.launch(Dispatchers.IO) {
@@ -57,7 +75,7 @@ class HomeFragmentViewModel @Inject constructor(
                     }
 
                 Log.d("Courses List Logger", result?.size.toString() + " " + result?.map { it.id }.toString())
-                _courseList.postValue(result)
+                updateCourseList(result)
             }
         }
     }
@@ -66,7 +84,7 @@ class HomeFragmentViewModel @Inject constructor(
         curPage = 1
         orderBy = newOrderBy
         orderByAscending = ascending
-        _courseList.postValue(emptyList())
+        updateCourseList(emptyList())
         loadCourses()
     }
     fun loadNextCoursePage() {
@@ -77,7 +95,7 @@ class HomeFragmentViewModel @Inject constructor(
                 course.copy(bookmarked = bookmarkedIds.contains(course.id))
             }
             Log.d("Courses List Logger", result?.size.toString() + result?.map{it.id}.toString())
-            _courseList.postValue(_courseList.value.orEmpty() + (result?: emptyList()))
+            updateCourseList(_courseList.value.orEmpty() + (result?: emptyList()))
         }
     }
     fun bookmarkCourse(course: Course, isBookmarked: Boolean?) {
@@ -92,4 +110,9 @@ class HomeFragmentViewModel @Inject constructor(
         courseUseCase.getBookmarkedCoursesIds().removeObserver { }
     }
     private fun getCurCourseOrder() = if (orderByAscending) orderBy else "-$orderBy"
+    private fun updateCourseList(newList: List<Course>?) {
+        fullCourseList.clear()
+        fullCourseList.addAll(newList?: emptyList())
+        _courseList.postValue(newList)
+    }
 }

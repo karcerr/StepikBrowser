@@ -1,6 +1,8 @@
 package com.stepikbrowser.feature.home
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.PopupMenu
@@ -33,6 +35,7 @@ class HomeFragment: Fragment(R.layout.home_fragment) {
         if (viewModel.courseList.value.isNullOrEmpty())
             viewModel.loadCourses()
         setupLoadMoreButton()
+        setupSearchFilter()
     }
 
     private fun setupSortPopupMenu() {
@@ -98,5 +101,15 @@ class HomeFragment: Fragment(R.layout.home_fragment) {
         binding.shimmerLayout.stopShimmer()
         binding.loadMoreButton.visibility = View.VISIBLE
     }
+    private fun setupSearchFilter() {
+        binding.searchEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                viewModel.updateSearchQuery(s.toString())
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
+    }
 }

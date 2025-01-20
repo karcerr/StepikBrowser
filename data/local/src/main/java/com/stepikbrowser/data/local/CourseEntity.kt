@@ -16,6 +16,7 @@ data class CourseEntity(
     val description: String?,
     val createDate: Date,
     val updateDate: Date?,
+    val url: String,
     val rating: Float?,
     val price: Float?
 )
@@ -27,6 +28,7 @@ fun Course.toEntity() = CourseEntity(
     description = description,
     createDate = createDate,
     updateDate = updateDate,
+    url = url,
     rating = rating,
     price = price,
 )
@@ -39,6 +41,7 @@ fun CourseEntity.toDomain() = Course(
     description = description,
     createDate = createDate,
     updateDate = updateDate,
+    url = url,
     rating = rating,
     price = price,
     bookmarked = true
