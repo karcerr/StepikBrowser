@@ -48,6 +48,7 @@ class HomeFragmentViewModel @Inject constructor(
             fullCourseList.filter { course ->
                 course.title.contains(searchQuery, ignoreCase = true) ||
                         course.description?.contains(searchQuery, ignoreCase = true) == true
+                        course.summary?.contains(searchQuery, ignoreCase = true) == true
             }
         }
         _courseList.postValue(filteredCourses) //Not calling updateCourseList(), because it would reset fullCourseList

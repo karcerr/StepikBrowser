@@ -1,5 +1,7 @@
 package com.stepikbrowser.feature.bookmarks
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -34,11 +36,21 @@ class BookmarksFragment: Fragment(R.layout.bookmarks_fragment) {
     private fun setupRecyclerView() {
         binding.coursesRecyclerView.layoutManager = LinearLayoutManager(context)
         adapter = CourseAdapter ({ course ->
-            Toast.makeText(requireContext(), "Clicked: ${course.title}", Toast.LENGTH_SHORT).show()
+            openCourseUrl(course.url)
         }, { course ->
             viewModel.bookmarkCourse(course, course.bookmarked)
         })
         binding.coursesRecyclerView.adapter = adapter
+    }
+    private fun openCourseUrl(url: String) {
+        try {
+            val intent = Intent(Intent.ACTION_VIEW).apply {
+                data = Uri.parse(url)
+            }
+            startActivity(intent)
+        } catch (e: Exception) {
+            Toast.makeText(requireContext(), "Unable to open URL", Toast.LENGTH_SHORT).show()
+        }
     }
     private fun showShimmer() {
         binding.shimmerLayout.startShimmer()
