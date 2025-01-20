@@ -7,16 +7,22 @@
         android:layout_height="match_parent"
 >
 
-    <TextView
-            android:text="Splash Screen Placeholder"
-            android:textColor="#F60202"
-            android:textSize="12pt"
-            android:textFontWeight="900"
+    <ImageView
+            android:src="@drawable/icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/imageView"/>
+    <ProgressBar
+            android:indeterminateDrawable="@drawable/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
     />
 </androidx.constraintlayout.widget.ConstraintLayout>
