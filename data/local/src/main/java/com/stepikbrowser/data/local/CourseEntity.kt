@@ -2,7 +2,6 @@ package com.stepikbrowser.data.local
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.TypeConverter
 import com.stepikbrowser.domain.stepik.Course
 import java.util.*
 
@@ -18,7 +17,7 @@ data class CourseEntity(
     val updateDate: Date?,
     val url: String,
     val rating: Float?,
-    val price: Float?
+    val price: String?
 )
 fun Course.toEntity() = CourseEntity(
     id = id,

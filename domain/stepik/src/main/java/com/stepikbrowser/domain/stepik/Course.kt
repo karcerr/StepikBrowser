@@ -14,7 +14,7 @@ data class Course(
     @SerializedName("update_date") var updateDate: Date?,
     @SerializedName("canonical_url") var url: String,
     var rating: Float?,         // "review_summary", average
-    var price: Float?,          // "price"
+    @SerializedName("display_price") var price: String?,
     var bookmarked: Boolean?
 ) {
     override fun equals(other: Any?): Boolean {

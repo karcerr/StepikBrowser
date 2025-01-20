@@ -61,7 +61,8 @@ class CourseAdapter(
         fun bind(course: Course) {
             binding.title.text = course.title
             binding.description.text = course.summary
-            binding.price.text = (course.price ?: binding.root.context.getString(R.string.free)).toString()
+            binding.price.text = if (course.price != null && course.price != "-") course.price
+                else binding.root.context.getString(R.string.free)
             binding.creationDate.text = DateTimeHelper.getPrintableDate(
                 course.createDate,
                 DateTimeHelper.DISPLAY_DAY_MONTH_YEAR_GENITIVE_PATTERN,

@@ -66,6 +66,7 @@ class HomeFragmentViewModel @Inject constructor(
 
         bookmarkedCourseIds.observeForever { bookmarkedIds ->
             viewModelScope.launch(Dispatchers.IO) {
+                Log.d("Course order Logger", getCurCourseOrder())
                 val result = if (_courseList.value.isNullOrEmpty())
                     courseUseCase.getCourses(curPage, getCurCourseOrder())?.map { course ->
                         course.copy(bookmarked = bookmarkedIds.contains(course.id))

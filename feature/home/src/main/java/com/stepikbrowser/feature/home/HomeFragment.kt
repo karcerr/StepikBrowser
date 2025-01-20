@@ -43,18 +43,22 @@ class HomeFragment: Fragment(R.layout.home_fragment) {
     private fun setupSortPopupMenu() {
         val popupMenu = PopupMenu(requireContext(), binding.sortTextButton)
         popupMenu.menuInflater.inflate(R.menu.sort_menu, popupMenu.menu)
+        val sortOptions = mapOf(
+            R.id.sort_by_creation_date to Pair(R.string.sort_by_creation_date, "create_date"),
+            R.id.sort_by_update_date to Pair(R.string.sort_by_update_date, "update_date"),
+            R.id.sort_by_title to Pair(R.string.sort_by_title, "title"),
+            R.id.sort_by_rating to Pair(R.string.sort_by_rating, "creation_date")
+        )
+
         popupMenu.setOnMenuItemClickListener { menuItem ->
-            val newOrder =
-            when (menuItem.itemId) {
-                R.id.sort_by_creation_date -> "create_date"
-                R.id.sort_by_update_date -> "update_date"
-                R.id.sort_by_title -> "title"
-                R.id.sort_by_rating -> "creation_date"
-                else -> {"title"}
-            }
+            val (stringId, newOrder) = sortOptions[menuItem.itemId]
+                ?: Pair(R.string.sort_by_creation_date, "create_date") // Default
+
+            binding.sortTextButton.text = getString(stringId)
             viewModel.changeCourseOrder(newOrder, sortAscending)
             true
         }
+
         binding.sortTextButton.setOnClickListener {
             popupMenu.show()
         }
