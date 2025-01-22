@@ -13,10 +13,10 @@ Browse Stepik Courses, manage bookmarks. [Stepik](https://stepik.org) is a platf
 </div>
 
 Features:
-* **Browse Stepik courses** Scroll through thousands of Stepik Courses.
-* **Filter** Filter Stepik Courses by title, rating, latest update date.
-* **Bookmarks** Bookmark your favorite courses.
-* **Firebase Authentication** Create a profile to save your bookmarks.
+* **Browse Stepik courses:** Scroll through thousands of Stepik Courses.
+* **Filter:** Filter Stepik Courses by title, rating, latest update date.
+* **Bookmarks:** Bookmark your favorite courses.
+* **Firebase Authentication:** Create a profile to save your bookmarks.
 
 ## Installation
 
