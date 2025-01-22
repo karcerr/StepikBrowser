@@ -3,15 +3,13 @@
 Browse Stepik Courses, manage bookmarks. [Stepik](https://stepik.org) is a platform offering the best online courses in Computer Science and various tech-related subjects.
 
 <div style="display: flex; justify-content: space-between;">
-  <img src="/screenshots/rustore1.png" width="45%" alt="home page">
-  <div style="width: 10%;"></div>
-  <img src="/screenshots/rustore2.png" width="45%" alt="onboarding screen">
+  <img src="/screenshots/rustore1.png" width="35%" alt="home page">
+  <img src="/screenshots/rustore2.png" width="35%" alt="onboarding screen">
 </div>
 
 <div style="display: flex; justify-content: space-between; margin-top: 10px;">
-  <img src="/screenshots/rustore3.png" width="45%" alt="bookmarks page">
-  <div style="width: 10%;"></div>
-  <img src="/screenshots/rustore4.png" width="45%" alt="profile page">
+  <img src="/screenshots/rustore3.png" width="35%" alt="bookmarks page">
+  <img src="/screenshots/rustore4.png" width="35%" alt="profile page">
 </div>
 
 Features:
