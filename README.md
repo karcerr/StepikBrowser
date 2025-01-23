@@ -24,18 +24,18 @@ Couldn't publish it to RuStore, because... well... Stepik. But you can download 
 
 ## Tech Stack
 
-|Category|Library|
-|:-:|:-:|
-|Networking|Retrofit 2, okhttp3, gson|
-|Local Storage|Room|
-|Asynchronous|Coroutines|
-|Architecture|Clean, MVVM|
-|Dependency Injection|Dagger Hilt|
-|Authorization|Firabase|
-|Navigation|DeepLinks|
-|Image Loading|Glide|
-|Blur|Dimezis's BlurView|
-|Shimmer|Facebook's shimmer|
+|Category|          Library          |
+|:-:|:-------------------------:|
+|Networking| Retrofit 2, okhttp3, gson |
+|Local Storage|           Room            |
+|Asynchronous|        Coroutines         |
+|Architecture|        Clean, MVVM        |
+|Dependency Injection|        Dagger Hilt        |
+|Authorization|         Firebase          |
+|Navigation|         DeepLinks         |
+|Image Loading|           Glide           |
+|Blur|    Dimezis's BlurView     |
+|Shimmer|    Facebook's shimmer     |
 
 ## Support
 
